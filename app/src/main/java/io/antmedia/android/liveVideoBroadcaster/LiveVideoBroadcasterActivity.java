@@ -16,12 +16,12 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.widget.ContentLoadingProgressBar;
-import android.support.v7.app.AppCompatActivity;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.core.app.ActivityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.core.widget.ContentLoadingProgressBar;
+import androidx.appcompat.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,6 +69,8 @@ public class LiveVideoBroadcasterActivity extends AppCompatActivity {
             LiveVideoBroadcaster.LocalBinder binder = (LiveVideoBroadcaster.LocalBinder) service;
             if (mLiveVideoBroadcaster == null) {
                 mLiveVideoBroadcaster = binder.getService();
+                /* NOW, if mGLView is null, only audio is streammed */
+                /* Can call init with only context */
                 mLiveVideoBroadcaster.init(LiveVideoBroadcasterActivity.this, mGLView);
                 mLiveVideoBroadcaster.setAdaptiveStreaming(true);
             }
@@ -98,9 +100,9 @@ public class LiveVideoBroadcasterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_live_video_broadcaster);
 
         mTimerHandler = new TimerHandler();
-        mStreamNameEditText = (EditText) findViewById(R.id.stream_name_edit_text);
+        mStreamNameEditText = (EditText) this.findViewById(R.id.stream_name_edit_text);
 
-        mRootView = (ViewGroup)findViewById(R.id.root_layout);
+        mRootView = (ViewGroup)findViewById(R.id.ait_root_layout);
         mSettingsButton = (ImageButton)findViewById(R.id.settings_button);
         mStreamLiveStatus = (TextView) findViewById(R.id.stream_live_status);
 

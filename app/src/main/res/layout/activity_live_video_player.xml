@@ -73,6 +73,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="stream name (add live=1 if it is live e.g. test live=1)"
+        android:text="emergency"
         android:textAppearance="?android:textAppearanceMedium" />
 
     <Button
